@@ -1,15 +1,15 @@
 'use strict';
 
-var React = require('react-native');
-var {
+const  React = require('react-native');
+const {
   AppRegistry,
   StyleSheet,
   Text,
   View,
 } = React;
 
-var pasta = React.createClass({
-  render: function() {
+class Pasta extends React.Component {
+  render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
@@ -25,9 +25,9 @@ var pasta = React.createClass({
       </View>
     );
   }
-});
+}
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -46,4 +46,4 @@ var styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('pasta', () => pasta);
+AppRegistry.registerComponent('Pasta', () => Pasta);
