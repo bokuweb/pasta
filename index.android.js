@@ -1,36 +1,33 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
-'use strict';
+' use strict';
 
-var React = require('react-native');
-var {
+const  React = require('react-native');
+const {
   AppRegistry,
   StyleSheet,
   Text,
   View,
 } = React;
 
-var pasta = React.createClass({
-  render: function() {
+class Pasta extends React.Component {
+  render() {
     return (
-      <View style={styles.container}>
+        <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
+        Welcome to React Native!
+      </Text>
         <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
+        To get started, edit index.ios.js
+      </Text>
         <Text style={styles.instructions}>
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
+        Press Cmd+R to reload,{'\n'}
+      Cmd+D or shake for dev menu
+      </Text>
+        </View>
     );
   }
-});
+}
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -49,4 +46,4 @@ var styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('pasta', () => pasta);
+AppRegistry.registerComponent('Pasta', () => Pasta);
