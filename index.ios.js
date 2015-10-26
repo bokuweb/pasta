@@ -1,9 +1,8 @@
 'use strict';
-
+import  React from 'react-native';
 import HomeScreen from './app/screens/home-screen.js';
 
-const  React = require('react-native');
-let {
+const {
   AppRegistry,
   StyleSheet,
   Navigator,
