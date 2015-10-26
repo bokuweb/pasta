@@ -27,7 +27,7 @@ export default class Pasta extends Component {
     return (
         <NavigatorIOS
           ref="mainNav"
-          //style={styles.container}
+          style={styles.container}
           initialRoute={{
             component: HomeScreen,
             title: 'Pasta',
@@ -48,3 +48,9 @@ export default class Pasta extends Component {
     );
   }
 }
+
+var styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+});
