@@ -1,6 +1,6 @@
 'use strict';
 
-const  React = require('react-native');
+let  React = require( 'react-native');
 
 const {
   //ActivityIndicatorIOS,
@@ -10,7 +10,7 @@ const {
   StyleSheet,
   Text,
   //TouchableHighlight,
-  View,
+  View
 } = React;
 
 // var ActionSheetIOS = require('ActionSheetIOS');
@@ -23,14 +23,19 @@ const {
 //var DESTRUCTIVE_INDEX = 0;
 //var CANCEL_INDEX = 1;
 
-export class HomeScreen extends React.Component {
+class HomeScreen extends  React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      feeds: [],
-      loading: true,
-    }
   }
+  render() {
+	return (
+		<View  style={styles.wrapper}>
+  		  <Text>ssssaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Text>
+  		</View>
+    );
+  }
+}
+
 /*
   componentWillMount() {
     FeedStore.addChangeListener(this._updateFeedsFromStore.bind(this));
@@ -100,46 +105,15 @@ export class HomeScreen extends React.Component {
     );
   }
 */
-  render() {
-    return (
-      <Text>aaa</Text>
-      //<ScrollView style={styles.scrollView}>
-      //  {this.state.feeds.map((feed) => { return this._renderFeed(feed) })}
-      //</ScrollView>
-    );
-  }
-};
 
-const styles = StyleSheet.create({
+var styles = StyleSheet.create({
   scrollView: {
     flex: 1,
     backgroundColor: '#F5FCFF'
   },
   wrapper: {
-    paddingTop: 20,
-    paddingBottom: 15,
-    paddingLeft: 10,
-    paddingRight: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#e9e9e9',
-  },
-  title: {
-    paddingTop: 2,
-    paddingBottom: 3,
-    paddingRight: 15,
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  description: {
-    color: "#B4AEAE",
-    fontSize: 12,
-    marginBottom: 5,
-  },
-  smallText: {
-    fontSize: 11,
-    textAlign: 'right',
-    color: "#B4AEAE",
+    paddingTop: 80,
   }
 });
 
-
+module.exports = HomeScreen;

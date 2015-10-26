@@ -1,12 +1,15 @@
 'use strict';
+
 import HomeScreen from './app/screens/home-screen.js';
+
 const  React = require('react-native');
 let {
   AppRegistry,
   StyleSheet,
   Navigator,
+  NavigatorIOS,
   Text,
-  View,
+  View
 } = React;
 
 class Pasta extends React.Component {
@@ -18,30 +21,32 @@ class Pasta extends React.Component {
   }
   render() {
     return (
-        <Navigator
-          initialRoute={{name: 'My First Scene', index: 0}}
-          renderScene={(route, navigator) =>
-             <MySceneComponent
-             name={route.name}
-             onForward={() => {
-               var nextIndex = route.index + 1;
-               navigator.push({
-                 name: 'Scene ' + nextIndex,
-                 index: nextIndex,
-               });
-             }}
-             onBack={() => {
-               if (route.index > 0) {
-                 navigator.pop();
-               }
-             }}
-             />
-         }
+        <NavigatorIOS
+          ref="mainNav"
+          style={styles.container}
+          initialRoute={{
+            component: HomeScreen,
+            title: 'Pasta',
+            //leftButtonTitle: 'Back',
+            rightButtonIcon: require('image!NavBarButtonPlus'),
+            //rightButtonTitle: "test",
+            onRightButtonPress: () => {
+              this.refs.mainNav.navigator.push({
+                component: NewFeed,
+                title: 'New Feed',
+              });
+            }
+          }}
         />
     );
   }
 }
 
+var styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+});
 class MySceneComponent extends  React.Component {
   render() {
 	return (
