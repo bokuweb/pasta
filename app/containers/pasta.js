@@ -13,6 +13,7 @@ import {bindActionCreators} from 'redux';
 //import * as counterActions from '../actions/counterActions';
 import { connect } from 'react-redux/native';
 import HomeScreen from '../screens/home-screen.js';
+import NewFeed from '../screens/NewFeed.js';
 
 connect(state => ({
   state: state.counter
@@ -31,9 +32,8 @@ export default class Pasta extends Component {
           initialRoute={{
             component: HomeScreen,
             title: 'Pasta',
-            //leftButtonTitle: 'Back',
+            backButtonTitle: 'Back',
             rightButtonIcon: require('image!NavBarButtonPlus'),
-            //rightButtonTitle: "test",
             onRightButtonPress: () => {
               this.refs.mainNav.navigator.push({
                 component: NewFeed,
@@ -42,9 +42,6 @@ export default class Pasta extends Component {
             }
           }}
         />
-        //<Counter
-        //  counter={state.count}
-        //  {...bindActionCreators(counterActions, dispatch)} />
     );
   }
 }
