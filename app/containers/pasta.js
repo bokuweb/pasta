@@ -14,10 +14,9 @@ import NewFeed from '../screens/NewFeed.js';
 export default class Pasta extends Component {
   constructor(props) {
     super(props);
-    this.props = props;
   }
   render() {
-    const { state, dispatch } = this.props;
+    //const { state, dispatch } = this.props;
     return (
         <NavigatorIOS
           ref="mainNav"
@@ -25,8 +24,10 @@ export default class Pasta extends Component {
           initialRoute={{
             component: HomeScreen,
             title: 'Pasta',
+            passProps: this.props,
             backButtonTitle: 'Back',
             rightButtonIcon: require('image!NavBarButtonPlus'),
+            //rightButtonTitle:'add',
             onRightButtonPress: () => {
               this.refs.mainNav.navigator.push({
                 component: NewFeed,

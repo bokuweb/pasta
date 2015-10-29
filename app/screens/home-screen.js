@@ -6,10 +6,10 @@ const {
   //ActivityIndicatorIOS,
   //ActionSheetIOS,
   //AsyncStorage,
-  //ScrollView,
+  ScrollView,
   StyleSheet,
   Text,
-  //TouchableHighlight,
+  TouchableHighlight,
   View
 } = React;
 
@@ -28,13 +28,15 @@ class HomeScreen extends  React.Component {
     super(props);
   }
   render() {
-	return (
-		<View  style={styles.wrapper}>
-  		  <Text>ssssaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Text>
-  		</View>
+    return (
+        <ScrollView style={styles.scrollView}>
+        {this.props.feed.items.map((item) => {
+          return this._renderFeed(item)
+        })}
+      </ScrollView>
     );
   }
-}
+
 
 /*
   componentWillMount() {
@@ -65,7 +67,7 @@ class HomeScreen extends  React.Component {
       }
     });
   }
-
+*/
   _showFeedDetails(feed:any) {
     Api.fetchRss(feed.feedUrl)
     .then((res) => {
@@ -74,7 +76,7 @@ class HomeScreen extends  React.Component {
           this.props.navigator.push ({
             component: FeedDetail,
             title: feed.title,
-            rightButtonIcon: require('image!NavBarButtonSettings'),
+            //rightButtonIcon: require('image!NavBarButtonSettings'),
             onRightButtonPress: () => {this._showFeedActionSheet(feed)},
             passProps: {
               entries: entries
@@ -86,26 +88,56 @@ class HomeScreen extends  React.Component {
     });
   }
 
-  _renderFeed(feed:any) {
+  _renderFeed(item) {
     return (
       <TouchableHighlight
         underlayColor="rgba(0,0,0,.1)"
-        onPress={() => { this._showFeedDetails(feed) }}
-        key={feed.length}>
+        //onPress={() => { this._showFeedDetails(feed) }}
+        key={item.length}>
         <View style={styles.wrapper}>
           <View style={styles.header}>
-            <Text style={styles.title}>{feed.title}</Text>
+            <Text style={styles.title}>{item.title}</Text>
           </View>
-          <View style={styles.footer}>
-            <Text style={styles.description}>{feed.description}</Text>
-            <Text style={styles.smallText}>{feed.feedUrl}</Text>
+        <View style={styles.footer}>
+            //<Text style={styles.description}>{item.description}</Text>
+            //<Text style={styles.smallText}>{feed.feedUrl}</Text>
           </View>
         </View>
       </TouchableHighlight>
     );
   }
-*/
-
+}
+var styles = StyleSheet.create({
+  scrollView: {
+    flex: 1,
+    backgroundColor: '#F5FCFF'
+  },
+  wrapper: {
+    paddingTop: 20,
+    paddingBottom: 15,
+    paddingLeft: 10,
+    paddingRight: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e9e9e9',
+  },
+  title: {
+    paddingTop: 2,
+    paddingBottom: 3,
+    paddingRight: 15,
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  description: {
+    color: "#B4AEAE",
+    fontSize: 12,
+    marginBottom: 5,
+  },
+  smallText: {
+    fontSize: 11,
+    textAlign: 'right',
+    color: "#B4AEAE",
+  }
+});
 var styles = StyleSheet.create({
   scrollView: {
     flex: 1,

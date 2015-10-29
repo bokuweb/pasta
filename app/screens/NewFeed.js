@@ -14,17 +14,15 @@ import React, {
 class NewFeed extends Component{
   constructor(props) {
     super(props);
-    this.props = props;
-    this.feeds = props.feeds;
-    this.addFeed = props.addFeed;
+    //this.feeds = props.feeds;
+    //this.addFeed = props.addFeed;
     this.state = {
       input: ''
     }
   }
 
   onAddFeed() {
-    //AlertIOS.alert("hoge");
-    this.props.fetchHatenaFeed();
+    this.props.fetchHatenaFeed(this.state.input);
     this.props.navigator.pop();
     /*
     fetchFeed(this.state.input).then((res) => {

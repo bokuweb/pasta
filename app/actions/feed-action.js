@@ -6,7 +6,6 @@ import React, {
 } from 'react-native';
 
 function getItems(feed) {
-  console.dir(feed);
   return feed.responseData.feed.entries;
 }
 
@@ -18,7 +17,6 @@ export function fetchingItems() {
 }
 
 export function recieveItems(items) {
-
   return {
     type: types.RECIEVE_ITEMS,
     items: items
@@ -39,8 +37,7 @@ export function fetchFeed(uri) {
 export function fetchHatenaFeed(word) {
   return dispatch => {
     fetchFeed(word).then((res) => {
-      AlertIOS.alert('Feeds already in list');
-      dispatch(recieveItems(getItems(feed)));
+      dispatch(recieveItems(getItems(res)));
     });
   }
 }

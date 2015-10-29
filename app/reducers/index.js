@@ -1,5 +1,5 @@
-import counter from './counter';
+import feed from './feed';
 
 export {
-  counter
+  feed
 };

@@ -90,7 +90,7 @@ class HomeScreen extends React.Component {
     return (
       <TouchableHighlight
         underlayColor="rgba(0,0,0,.1)"
-        onPress={() => { this._showFeedDetails(feed) }}
+        //onPress={() => { this._showFeedDetails(feed) }}
         key={feed.length}>
         <View style={styles.wrapper}>
           <View style={styles.header}>
