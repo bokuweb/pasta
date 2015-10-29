@@ -1,22 +1,22 @@
 'use strict';
-import React, { Component } from 'react-native';
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { Provider } from 'react-redux/native';
-import thunk from 'redux-thunk';
 
-import * as reducers from '../reducers';
+import {bindActionCreators} from 'redux';
+import * as actions from '../actions/feed-action';
+import { connect } from 'react-redux/native';
 import Pasta from './pasta';
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-const reducer = combineReducers(reducers);
-const store = createStoreWithMiddleware(reducer);
-
-export default class App extends Component {
-  render() {
-    return (
-        <Provider store={store}>
-          {() => <Pasta />}
-        </Provider>
-    );
-  }
+function mapStateToProps(state)  {
+  return state;
+  //  items : state.feed.items
+  //};
 }
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actions, dispatch);
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Pasta);
+

@@ -29,7 +29,8 @@ class NewFeed extends Component{
   }
 
   onAddFeed() {
-    AlertIOS.alert("hoge");
+    //AlertIOS.alert("hoge");
+    this.props.fetchFeed();
     this.props.navigator.pop();
     /*
     fetchFeed(this.state.input).then((res) => {

@@ -8,16 +8,8 @@ import React, {
   View
 } from 'react-native';
 
-import {bindActionCreators} from 'redux';
-//import Counter from '../components/counter';
-//import * as counterActions from '../actions/counterActions';
-import { connect } from 'react-redux/native';
 import HomeScreen from '../screens/home-screen.js';
 import NewFeed from '../screens/NewFeed.js';
-
-connect(state => ({
-  state: state.counter
-}));
 
 export default class Pasta extends Component {
   constructor(props) {
