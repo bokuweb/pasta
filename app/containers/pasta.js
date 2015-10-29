@@ -14,6 +14,7 @@ import NewFeed from '../screens/NewFeed.js';
 export default class Pasta extends Component {
   constructor(props) {
     super(props);
+    this.props = props;
   }
   render() {
     const { state, dispatch } = this.props;
@@ -30,6 +31,7 @@ export default class Pasta extends Component {
               this.refs.mainNav.navigator.push({
                 component: NewFeed,
                 title: 'New Feed',
+                passProps: this.props
               });
             }
           }}

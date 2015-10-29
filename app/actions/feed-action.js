@@ -1,5 +1,9 @@
-import {fetch} from '../api/feed'
+import {fetchFeed} from '../api/feed'
 import * as types from '../constants/action-types';
+
+import React, {
+  AlertIOS
+} from 'react-native';
 
 function getItems(feed) {
   console.dir(feed);
@@ -32,10 +36,10 @@ export function fetchFeed(uri) {
   };
 }*/
 
-export function fetchFeed(word) {
+export function fetchHatenaFeed(word) {
   return dispatch => {
-    fetch(word).then((res) => {
-      console.dir(res);
+    fetchFeed(word).then((res) => {
+      AlertIOS.alert('Feeds already in list');
       dispatch(recieveItems(getItems(feed)));
     });
   }

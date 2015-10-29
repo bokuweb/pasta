@@ -11,16 +11,10 @@ import React, {
   View
 } from 'react-native';
 
-import {fetchFeed} from '../Api/RssFeedApi';
-//var AppActions = require('../Actions/AppActions');
-//var FeedStore = require('../Stores/FeedStore');
-//var _ = require('lodash');
-
-//var STORAGE_KEY = '@FeedList';
-
 class NewFeed extends Component{
   constructor(props) {
     super(props);
+    this.props = props;
     this.feeds = props.feeds;
     this.addFeed = props.addFeed;
     this.state = {
@@ -30,7 +24,7 @@ class NewFeed extends Component{
 
   onAddFeed() {
     //AlertIOS.alert("hoge");
-    this.props.fetchFeed();
+    this.props.fetchHatenaFeed();
     this.props.navigator.pop();
     /*
     fetchFeed(this.state.input).then((res) => {
