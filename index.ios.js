@@ -1,60 +1,24 @@
 'use strict';
 
-import HomeScreen from './app/screens/home-screen.js';
+import React, {AppRegistry,  Component}  from 'react-native';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { Provider } from 'react-redux/native';
+import thunk from 'redux-thunk';
+import * as reducers from './app/reducers';
+import App from './app/containers/app';
 
-const  React = require('react-native');
-let {
-  AppRegistry,
-  StyleSheet,
-  Navigator,
-  NavigatorIOS,
-  Text,
-  View
-} = React;
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const reducer = combineReducers(reducers);
+const store = createStoreWithMiddleware(reducer);
 
-class Pasta extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      bootstrapped: false
-    }
-  }
+class Index extends Component {
   render() {
     return (
-        <NavigatorIOS
-          ref="mainNav"
-          style={styles.container}
-          initialRoute={{
-            component: HomeScreen,
-            title: 'Pasta',
-            //leftButtonTitle: 'Back',
-            rightButtonIcon: require('image!NavBarButtonPlus'),
-            //rightButtonTitle: "test",
-            onRightButtonPress: () => {
-              this.refs.mainNav.navigator.push({
-                component: NewFeed,
-                title: 'New Feed',
-              });
-            }
-          }}
-        />
+        <Provider store={store}>
+        {() => <App />}
+      </Provider>
     );
   }
-}
+ }
 
-var styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-});
-class MySceneComponent extends  React.Component {
-  render() {
-	return (
-		<View>
-  		<Text>{this.props.name}</Text>
-  		</View>
-    )
-  }
-  
-}
-AppRegistry.registerComponent('Pasta', () => Pasta);
+AppRegistry.registerComponent('Pasta', () => Index);

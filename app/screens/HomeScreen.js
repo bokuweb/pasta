@@ -1,46 +1,42 @@
 'use strict';
 
-import  React from 'react-native';
-import { connect } from 'react-redux/native';
+var Api = require('../Api/RssFeedApi');
+var AppActions = require('../Actions/AppActions');
+var FeedStore = require('../Stores/FeedStore');
+var FeedDetail = require('./FeedDetail');
+var React = require('react-native');
+var _ = require('lodash');
 
-const {
-  //ActivityIndicatorIOS,
-  //ActionSheetIOS,
-  //AsyncStorage,
+var {
+  ActivityIndicatorIOS,
+  ActionSheetIOS,
+  AsyncStorage,
   ScrollView,
   StyleSheet,
   Text,
   TouchableHighlight,
-  View
+  View,
 } = React;
 
-// var ActionSheetIOS = require('ActionSheetIOS');
+var ActionSheetIOS = require('ActionSheetIOS');
 
-//var BUTTONS = [
-//  'Remove Feed',
-//  'Back',
-//];
+var BUTTONS = [
+  'Remove Feed',
+  'Back',
+];
 
-//var DESTRUCTIVE_INDEX = 0;
-//var CANCEL_INDEX = 1;
+var DESTRUCTIVE_INDEX = 0;
+var CANCEL_INDEX = 1;
 
-class HomeScreen extends  React.Component {
+class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
-
-  }
-  render() {
-    return (
-        <ScrollView style={styles.scrollView}>
-        {this.props.getItems().map((item) => {
-          return this._renderFeed(item)
-        })}
-      </ScrollView>
-    );
+    this.state = {
+      feeds: [],
+      loading: true,
+    }
   }
 
-
-/*
   componentWillMount() {
     FeedStore.addChangeListener(this._updateFeedsFromStore.bind(this));
     this._updateFeedsFromStore();
@@ -69,7 +65,7 @@ class HomeScreen extends  React.Component {
       }
     });
   }
-*/
+
   _showFeedDetails(feed:any) {
     Api.fetchRss(feed.feedUrl)
     .then((res) => {
@@ -78,7 +74,7 @@ class HomeScreen extends  React.Component {
           this.props.navigator.push ({
             component: FeedDetail,
             title: feed.title,
-            //rightButtonIcon: require('image!NavBarButtonSettings'),
+            rightButtonIcon: require('image!NavBarButtonSettings'),
             onRightButtonPress: () => {this._showFeedActionSheet(feed)},
             passProps: {
               entries: entries
@@ -90,23 +86,34 @@ class HomeScreen extends  React.Component {
     });
   }
 
-  _renderFeed(item) {
+  _renderFeed(feed:any) {
     return (
       <TouchableHighlight
         underlayColor="rgba(0,0,0,.1)"
         //onPress={() => { this._showFeedDetails(feed) }}
-        key={item.length}>
+        key={feed.length}>
         <View style={styles.wrapper}>
           <View style={styles.header}>
-            <Text style={styles.title}>{item.title}</Text>
+            <Text style={styles.title}>{feed.title}</Text>
           </View>
-        <View style={styles.footer}>
+          <View style={styles.footer}>
+            <Text style={styles.description}>{feed.description}</Text>
+            <Text style={styles.smallText}>{feed.feedUrl}</Text>
           </View>
         </View>
       </TouchableHighlight>
     );
   }
-}
+
+  render() {
+    return (
+      <ScrollView style={styles.scrollView}>
+        {this.state.feeds.map((feed) => { return this._renderFeed(feed) })}
+      </ScrollView>
+    );
+  }
+};
+
 var styles = StyleSheet.create({
   scrollView: {
     flex: 1,
@@ -136,15 +143,6 @@ var styles = StyleSheet.create({
     fontSize: 11,
     textAlign: 'right',
     color: "#B4AEAE",
-  }
-});
-var styles = StyleSheet.create({
-  scrollView: {
-    flex: 1,
-    backgroundColor: '#F5FCFF'
-  },
-  wrapper: {
-    paddingTop: 80,
   }
 });
 
