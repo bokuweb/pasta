@@ -1,6 +1,7 @@
 'use strict';
 
 import  React from 'react-native';
+import { connect } from 'react-redux/native';
 
 const {
   //ActivityIndicatorIOS,
@@ -26,11 +27,12 @@ const {
 class HomeScreen extends  React.Component {
   constructor(props) {
     super(props);
+
   }
   render() {
     return (
         <ScrollView style={styles.scrollView}>
-        {this.props.feed.items.map((item) => {
+        {this.props.getItems().map((item) => {
           return this._renderFeed(item)
         })}
       </ScrollView>
@@ -99,8 +101,6 @@ class HomeScreen extends  React.Component {
             <Text style={styles.title}>{item.title}</Text>
           </View>
         <View style={styles.footer}>
-            //<Text style={styles.description}>{item.description}</Text>
-            //<Text style={styles.smallText}>{feed.feedUrl}</Text>
           </View>
         </View>
       </TouchableHighlight>

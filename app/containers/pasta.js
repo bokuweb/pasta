@@ -15,8 +15,12 @@ export default class Pasta extends Component {
   constructor(props) {
     super(props);
   }
+
+  getItems() {
+    return this.props.feed.items;
+  }
+
   render() {
-    //const { state, dispatch } = this.props;
     return (
         <NavigatorIOS
           ref="mainNav"
@@ -24,7 +28,7 @@ export default class Pasta extends Component {
           initialRoute={{
             component: HomeScreen,
             title: 'Pasta',
-            passProps: this.props,
+            passProps: {getItems:this.getItems.bind(this)},
             backButtonTitle: 'Back',
             rightButtonIcon: require('image!NavBarButtonPlus'),
             //rightButtonTitle:'add',
@@ -32,7 +36,7 @@ export default class Pasta extends Component {
               this.refs.mainNav.navigator.push({
                 component: NewFeed,
                 title: 'New Feed',
-                passProps: this.props
+                passProps:  this.props
               });
             }
           }}
